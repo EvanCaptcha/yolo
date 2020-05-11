@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 import random
 import time
 app = Flask(__name__)
-threads = 10
+threads = 1
 p = True
 headers = {
     'authority': 'onyolo.com',
@@ -26,14 +26,14 @@ def home():
 def task(user, txt):
     sent = 0
     data = '{"text":"' + txt + '","cookie":""}'
-    while sent < 5:
+    while sent < 50:
             try:
                 s = requests.session()
                 if p:
                     lines = open('/root/yolo/proxies').read().splitlines()
                     proxy = random.choice(lines)
                     split = proxy.split(":")
-                    proxies = {"https": f"https://{split[0]}:{split[1]}"}
+                    proxies = {"https": "https://" + split[0] + ":" + split[1]}
                     s.proxies.update(proxies)
                 response = s.post(f'https://onyolo.com/{user}/message', headers=headers, data=data)
                 print(response.status_code)
