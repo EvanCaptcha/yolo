@@ -38,7 +38,7 @@ def task(user, txt):
                 response = s.post('https://onyolo.com/' + user + '/message', headers=headers, data=data)
                 print(response.status_code)
                 if response.text == 'ok':
-                    print(f'Message sent to ' + user)
+                    print('Message sent to ' + user)
                     sent =+1
             except:
                 pass
