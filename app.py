@@ -26,7 +26,7 @@ def home():
 def task(user, txt):
     sent = 0
     data = '{"text":"' + txt + '","cookie":""}'
-    while sent < 50:
+    for x in range(50):
             try:
                 s = requests.session()
                 if p:
@@ -34,6 +34,7 @@ def task(user, txt):
                     proxy = random.choice(lines)
                     split = proxy.split(":")
                     proxies = {"https": "https://" + split[0] + ":" + split[1]}
+                    print(proxies)
                     s.proxies.update(proxies)
                 response = s.post('https://onyolo.com/' + user + '/message', headers=headers, data=data)
                 print(response.status_code)
