@@ -35,10 +35,10 @@ def task(user, txt):
                     split = proxy.split(":")
                     proxies = {"https": "https://" + split[0] + ":" + split[1]}
                     s.proxies.update(proxies)
-                response = s.post(f'https://onyolo.com/{user}/message', headers=headers, data=data)
+                response = s.post('https://onyolo.com/' + user + '/message', headers=headers, data=data)
                 print(response.status_code)
                 if response.text == 'ok':
-                    print(f'Message sent to {user}')
+                    print(f'Message sent to ' + user)
                     sent =+1
             except:
                 pass
